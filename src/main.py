@@ -2,6 +2,7 @@
 
 import argparse
 import re
+import urllib.request
 
 def indentation_level_of(s):
     
@@ -12,14 +13,21 @@ def indentation_level_of(s):
             cnt += 1
         else:
             break
-    
+
     return cnt
 
-def sanitize_link(link):
-    link = re.sub('[.!?/]', '', link)
-    link = link.replace(' ', '-')
-    
-    return link.lower()
+def to_urlpath(s):
+    s = re.sub('[.!?/]', '', s)
+    s = s.replace(' ', '-')
+
+    return s.lower()
+
+def open_readme(readme):
+    if readme.startswith('http') or readme.startswith('www'):
+        readme, _ = urllib.request.urlretrieve(readme)
+
+    return open(readme, mode='r')
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -35,13 +43,13 @@ def main():
     
     if not args.URL.startswith('https://github.com/'):
         args.URL = 'https://github.com/{}'.format(args.URL)
-    
-    readme = open(args.README, mode='r')
-    
+
+    readme = open_readme(args.README)
+
     print(args.head)
 
     code = False
-    
+
     for line in readme:
         txt = line.strip()
         
@@ -49,12 +57,12 @@ def main():
             code = not code
         elif len(txt) != 0 and txt[0] == '#' and not code:
             level = indentation_level_of(txt)
-            link = txt[level:].strip()
+            name = txt[level:].strip()
             indent = 4 * (level - 1) * ' '
             
-            url = '{}#{}'.format(args.URL, sanitize_link(link))
+            url = '{}#{}'.format(args.URL, to_urlpath(name))
             
-            print('{}* [{}]({})'.format(indent, link, url))
+            print('{}* [{}]({})'.format(indent, name, url))
 
     if args.append:
         readme.seek(0)
