@@ -1,33 +1,18 @@
 #!/usr/bin/python env
 
 import argparse
-import re
 import urllib.request
+import re
+import sys
 
 def indentation_level_of(s):
-    
-    cnt = 0
-    
-    for c in s:
-        if c == '#':
-            cnt += 1
-        else:
-            break
-
-    return cnt
+    return len(s) - len(s.lstrip('#'))
 
 def to_urlpath(s):
     s = re.sub('[.!?/]', '', s)
     s = s.replace(' ', '-')
 
     return s.lower()
-
-def open_readme(readme):
-    if readme.startswith('http') or readme.startswith('www'):
-        readme, _ = urllib.request.urlretrieve(readme)
-
-    return open(readme, mode='r')
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -38,13 +23,37 @@ def main():
                         action='store_true',
                         default=False)
     parser.add_argument('--head', help='', default='# Overview')
+    parser.add_argument('--debug', 
+                        help='enable debug output (makes toc unusable)',
+                        action='store_true')
     
     args = parser.parse_args()
     
-    if not args.URL.startswith('https://github.com/'):
+    if not args.URL.startswith('http'):
+        if args.debug:
+            print('*WARNING*: expected \'https://github.com/\' prefix in \'{}\'- prepending it now'.format(args.URL), file=sys.stderr)
         args.URL = 'https://github.com/{}'.format(args.URL)
+    
+    if args.debug:
+        d = { True : 'On', False : 'Off' }
+        
+        print('--------------------------------------')
+        print('README : \'{}\''.format(args.README))
+        print('URL    : \'{}\''.format(args.URL))
+        print('Head   : \'{}\''.format(args.head))
+        print('Append : {}'.format(d[args.append]))
+        print('Debug  : {}'.format(d[args.debug]))
+        print('--------------------------------------')
 
-    readme = open_readme(args.README)
+    path = args.README
+    
+    if path.startswith('http') or path.startswith('www'):
+        if args.debug:
+            print('*INFO*: fetching README from remote host')
+            
+        path, _ = urllib.request.urlretrieve(readme)
+
+    readme = open(path, mode='r')
 
     print(args.head)
 
