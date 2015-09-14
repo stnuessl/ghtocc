@@ -24,7 +24,9 @@ def main():
                         help='print the readme after the toc',
                         action='store_true',
                         default=False)
-    parser.add_argument('--head', help='', default='# Overview')
+    parser.add_argument('--head', 
+                        help='Set the caption for the table of content', 
+                        default='# Overview')
     parser.add_argument('--debug', 
                         help='enable debug output (makes toc unusable)',
                         action='store_true')
