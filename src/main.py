@@ -52,12 +52,7 @@ class Readme():
     
     @staticmethod
     def from_url(url):
-        # Skip trailing '/'
-        for i in range(1, len(url)):
-            if url[-(i + 1)] != '/':
-                break
-        
-        url = url[:-i]
+        url = url.rstrip('/')
         
         # Find user and repository name
         if 'github.com/' in url:
@@ -100,10 +95,7 @@ def main():
                         default=False)
     parser.add_argument('--head', 
                         help='Set the caption for the table of content', 
-                        default='# Overview')
-    parser.add_argument('--debug', 
-                        help='Enable debug output (makes toc unusable)',
-                        action='store_true')
+                        default='## Overview')
     
     args = parser.parse_args()
     

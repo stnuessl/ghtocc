@@ -2,14 +2,15 @@
 
 Automatically create table of content for your README.md files on github.
 
-# Overview
+## Overview
 * [ghtocc - Github Table of Content Creator](README.md#ghtocc---github-table-of-content-creator)
 * [Overview](README.md#overview)
     * [Dependencies](README.md#dependencies)
     * [Usage](README.md#usage)
-        * [Download the README from a repository and create table of content](README.md#download-the-readme-from-a-repository-and-create-table-of-content)
-        * [Specify a local README file and create table of content](README.md#specify-a-local-readme-file-and-create-table-of-content)
+        * [Download the README from a repository](README.md#download-the-readme-from-a-repository)
+        * [Specify a local README file](README.md#specify-a-local-readme-file)
     * [Remark](README.md#remark)
+
 
 ## Dependencies
 
@@ -24,7 +25,7 @@ Always checkout
 $ python main.py --help
 ```
 
-### Download the README from a repository and create table of content
+### Download the README from a repository 
 
 ```
 $ python main.py stnuessl/ghtocc
@@ -36,10 +37,10 @@ which equals
 $ python main.py https://github.com/stnuessl/ghtocc
 ```
 
-### Specify a local README file and create table of content
+### Specify a local README file
 
 ```
-$ python main.py stnuessl/ghtocc --readme /path/to/local/file
+$ python main.py stnuessl/ghtocc /path/to/local/README.md
 ```
 
 ## Remark
