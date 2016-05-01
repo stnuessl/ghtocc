@@ -3,12 +3,13 @@
 Automatically create table of content for your README.md files on github.
 
 # Overview
-* [ghtocc - Github Table of Content Creator](https://github.com/stnuessl/ghtocc#ghtocc---github-table-of-content-creator)
-    * [Dependencies](https://github.com/stnuessl/ghtocc#dependencies)
-    * [Usage](https://github.com/stnuessl/ghtocc#usage)
-        * [Download the README from a repository and create table of content](https://github.com/stnuessl/ghtocc#download-the-readme-from-a-repository-and-create-table-of-content)
-        * [Specify a local README file and create table of content](https://github.com/stnuessl/ghtocc#specify-a-local-readme-file-and-create-table-of-content)
-    * [Remark](https://github.com/stnuessl/ghtocc#remark)
+* [ghtocc - Github Table of Content Creator](README.md#ghtocc---github-table-of-content-creator)
+* [Overview](README.md#overview)
+    * [Dependencies](README.md#dependencies)
+    * [Usage](README.md#usage)
+        * [Download the README from a repository and create table of content](README.md#download-the-readme-from-a-repository-and-create-table-of-content)
+        * [Specify a local README file and create table of content](README.md#specify-a-local-readme-file-and-create-table-of-content)
+    * [Remark](README.md#remark)
 
 ## Dependencies
 
