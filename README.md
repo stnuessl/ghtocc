@@ -40,7 +40,7 @@ $ python main.py https://github.com/stnuessl/ghtocc
 ### Specify a local README file
 
 ```
-$ python main.py stnuessl/ghtocc /path/to/local/README.md
+$ python main.py /path/to/local/README.md
 ```
 
 ## Remark
