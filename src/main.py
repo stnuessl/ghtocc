@@ -79,7 +79,7 @@ def indentation_level_of(s):
     return len(s) - len(s.lstrip('#'))
 
 def to_urlpath(s):
-    s = re.sub('[.!?/\'+_]', '', s)
+    s = re.sub('[.!?/\'+_"]', '', s)
     s = s.replace(' ', '-')
 
     return s.lower()
